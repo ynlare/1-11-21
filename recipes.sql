@@ -41,7 +41,7 @@ SELECT * from Recipe
 
 /*
 get a specific ingredient 
-this command is incomplete, the last item on the right hand side of the equals sign needs to be added
+this command is incomplete, the last item on the right hand side of the equals sign needs to be addedD
 */ 
 
 SELECT *
