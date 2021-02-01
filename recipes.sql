@@ -67,3 +67,56 @@ WHERE name = 'Sugar';
 
 /* Delete the row of data from the Recipe table where the id is 1. */
 DELETE FROM Recipe WHERE id=1;
+
+
+
+
+                                                /*LAB: SQL PRACTICE*/
+
+
+create table Recipe (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(25), description VARCHAR(50), instructions VARCHAR(500)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table Ingredient (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50)) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+
+create table Measure (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30)) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
+
+create table RecipeIngredient (recipe_id INT NOT NULL, ingredient_id INT NOT NULL, measure_id INT, amount INT, 
+
+	CONSTRAINT fk_recipe FOREIGN KEY(recipe_id) REFERENCES Recipe(id), 
+
+	CONSTRAINT fk_ingredient FOREIGN KEY(ingredient_id) REFERENCES Ingredient(id), 
+
+	CONSTRAINT fk_measure FOREIGN KEY(measure_id) REFERENCES Measure(id)) 
+
+	ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
+     /* Add coco and banane to Ingredient Table*/
+    
+INSERT INTO Ingredient (name) VALUES('coco'),('banane');
+ /* Add name, description, instructions for coco and banane to Recipe table */
+INSERT INTO Recipe (name, description,instructions) VALUES('coco and banane','I guess coco and banane is coco and banane','Boil water,add coco, drain,add banane.');
+
+/* Add bottle and bowl to Measure Table*/
+     INSERT INTO Measure (name) VALUES('bottle'),('bowl');
+
+INSERT INTO RecipeIngredient (recipe_id, ingredient_id, measure_id, amount) VALUES (1, 1, 1, 1),(1, 2, 2, 1);
+
+
+SELECT r.name AS 'Recipe', r.instructions, ri.amount AS 'Amount', mu.name AS 'Unit of Measure', i.name AS 'Ingredient' 
+FROM Recipe r 
+JOIN RecipeIngredient ri on r.id = ri.recipe_id 
+JOIN Ingredient i on i.id = ri.ingredient_id 
+LEFT OUTER JOIN Measure mu on mu.id = measure_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
